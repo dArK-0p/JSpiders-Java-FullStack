@@ -1,106 +1,120 @@
-# Identifiers
+# Identifiers in Java
 
-- These are the names given in Java programs for <u>identification</u> purposes.
+**Identifiers** are the names used in Java programs to identify elements such as classes, methods, variables, etc.
 
-- It can be the name of: `class`, `method` or `variable`.
+## **Example**
 
 ```java
 // BasicSyntax.java
-class BasicSyntax
-{
-    public static void main(String[] args)
-    {
-        System.out.println("Good Nght !! Doston");
+class BasicSyntax {
+    public static void main(String[] args) {
+        System.out.println("Good Night !! Friends");
     }
 }
 ```
 
-- *<u>Identifiers</u>* present in `BasicSyntax.java`:
-  
-  - `BasicSyntax` &rarr; User-defined Class.
-  
-  - `System`, `String`  &rarr;  Pre-defined Classes.
-  
-  - `main()`, `println()` &rarr;  Pre-defined Methods.
-  
-  - `args` &rarr;  User-defined Variable.
-  
-  - `out` &rarr;  Pre-defined Variable.
+### **Identifiers in the above example:**
 
-## Rules for writing Identifiers.
+- `BasicSyntax` — User-defined class name
 
-1. *Allowed* Characters:
+- `System`, `String` — Predefined classes from the Java API
+
+- `main()`, `println()` — Predefined methods
+
+- `args` — User-defined variable (parameter)
+
+- `out` — Predefined variable (member of `System` class)
+
+---
+
+## **Rules for Writing Identifiers**
+
+1. **Allowed Characters:**
    
-   - 'lowercase' Alphabets : `a - z`
+   - Lowercase alphabets: `a–z`
    
-   - 'UPPERCASE' Alphabets : `A - Z`
+   - Uppercase alphabets: `A–Z`
    
-   - 'Digits' : `0 - 9`
+   - Digits: `0–9`
    
-   - Special Characters : `$`, `_`
+   - Special characters: `$` and `_`
 
-2. Should never start with *Digits*.
+2. **Starting Character Restrictions:**
    
-   - `Sambit22` ✅
+   - Identifiers **must not start** with a digit.
+     
+     - ✅ `Sambit22`
+     
+     - ❌ `22Sambit`
+
+3. **Reserved Keywords:**
    
-   - `22Sambit` ❌
+   - Reserved Java keywords **cannot** be used as identifiers.
+     
+     - ✅ `class Sambit { ... }`
+     
+     - ❌ `class static { ... }`, `class void { ... }`, `class if { ... }`
 
-3. *Reserved Keywords* are *prohibited*.
+4. **Case Sensitivity:**
    
-   - `class Sambit { ... }` ✅
-   - `class static { ... }` ❌
-   - `class void { ... }`     ❌
-   - `class if { ... }`         ❌
+   - Java identifiers are **case-sensitive**.
+     
+     - ✅ `Sambit`, `sambit` — different identifiers
+     
+     - ✅ `Switch` (valid identifier), ❌ `switch` (keyword)
 
-4. *Case-Sensitive*
+5. **Special Notes:**
    
-   - This is because the ASCII values for uppercase letters and thier corresponding lowercase letters is different.
+   - A standalone underscore (`_`) is **not allowed** as of Java 9.
+     
+     - ✅ `_name`
+     
+     - ❌ `_`
    
-   - `class Sambit { ... }` $\neq$ `class sambit { ... }`
-   
-   - `class Switch { ... }` ✅
-   
-   - `class switch { ... }` ❌
-- Some more examples:
-  
-  - `class $ { ... }` ✅
-  
-  - `class _ { ... }` ❌
-    
-    - Since release 9 of Java, `_` cannot be used *individually* for identification.
-  
-  - `class _name { ... }` ✅
-  
-  - `class if { ... }` $\neq$ `class If { ... }`
-    
-    - `(i, f)` &rarr; `(105, 102)` &rarr; `(1101001, 1100110)` $\neq$ `(1001001, 1100110)` &larr; `(73, 102)` &larr; `(I, f)` &larr; If
-  
-  - `class Sambit Sagar { ... }` ❌
-    
-    - '` `' is not an allowed character in identifier.
+   - **Spaces are not permitted** in identifiers.
+     
+     - ❌ `class Sambit Sagar { ... }`
 
-#### What is ASCII Value?
+---
 
-- ASCII - American Standard Code for Information Interchange.
+## **ASCII Values Reference**
 
-- These are <u>constant</u> <u>integer</u> values given to each and every character for conversion purpose.
+ASCII (American Standard Code for Information Interchange) assigns numeric codes to characters:
 
-- Useful **ASCII** Values:
-  
-  - `A - Z` $\equiv$ `65 - 90` $\equiv$ `01000001 - 01011010`
-  
-  - `a - z` $\equiv$ `97 - 122` $\equiv$ `01100001 - 01111010`
-  
-  - `0 - 9` $\equiv$ `48 - 57` $\equiv$ `00110000 - 00111001`
+- Uppercase: `A–Z` → `65–90`
 
-### Camel Case Rule
+- Lowercase: `a–z` → `97–122`
 
-- A naming convention used for **better** code readability and consistency.
+- Digits: `0–9` → `48–57`
 
-- `camelCase` defines a specific way of naming *classes*, *methods* and *variables*.
-  
-  - Words in the name mus **not** be separated by `' '`.
-  - First letter of each word must be **Uppercase**.
-  - First letter of the first word must be **Lowercase**.
+### **Case Sensitivity Example:**
 
-- E.g.: `functionName`, `longerFunctionName`, `evenLongerFunctionName`.
+| Character | ASCII Decimal | ASCII Binary |
+| --------- | ------------- | ------------ |
+| I         | 73            | 01001001     |
+| i         | 105           | 01101001     |
+| f         | 102           | 01100110     |
+
+> `If` and `if` are different due to their distinct ASCII values.
+
+---
+
+## **Camel Case Convention**
+
+Java follows the **Camel Case** convention for naming identifiers:
+
+- No spaces or separators.
+
+- The first word starts with a **lowercase** letter.
+
+- Each subsequent word starts with an **uppercase** letter.
+
+**Examples:**
+
+- `functionName`
+
+- `longerFunctionName`
+
+- `evenLongerFunctionName`
+
+---

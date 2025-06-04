@@ -1,281 +1,230 @@
 # Variables
 
-- A *variable* is an **identifier** associated with a memory location where data can be *stored, retrieved, and modified* during a program's execution.
+- A *variable* is an **identifier** associated with a memory location where data can be *stored, retrieved, and modified* during program execution.
   
-  - Value and Object, both are considered to be data.
+  - Both value and object are considered data.
 
-- There are *two* parts of a variable:
+- **Literal**: A *constant* value assigned to a **variable**.
+
+- A variable consists of two parts:
   
-  - **Declaration.**
+  - **Declaration**
+  
   - **Initialization**
+
+![Variable Creation](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Variable%20Creation.png)
+
+- *Declaration* is **mandatory**; *Initialization* is **optional**.
   
-  ![](Images/Variable%20Creation.png)
+  - The **JVM** provides *default values* for uninitialized variables.
 
-- While *Declaration* is <u>mandatory</u>, *Initialization* is <u>optional</u>.
-  
-  - **JVM** provides *default* values for variables that are not initialized.
+## Default Value
 
-### Default Value
-
-- These are the *values* provided to the un-initialized variables, by the JVM.
-  
-  ```java
-  class DefaultValues
-  {
-      byte b;
-      short s;
-      int i;
-      long l;
-  
-      float f;
-      double d;
-  
-      char c;
-  
-      boolean _b;
-  
-      DefaultValues dv;
-  
-      String S;
-      System _S;
-  
-      public static void main(String [] args)
-      {
-          DefaultValues DV = new DefaultValues();
-          System.out.println(DV.b + "\n" + DV.s + "\n" + DV.i + "\n" + DV.l);
-          System.out.println(DV.f + "\n" + DV.d);
-          System.out.println(DV.c);
-          System.out.println(DV._b);
-  
-          System.out.println(DV.dv);
-          System.out.println(DV.S + "\n" + DV._S);
-      }
-  }
-  ```
-
-## Types of Variables
-
-* Categorization of Vatiables has been done on the basis of ***where*** it is declared in the class and ***how*** it is declared in the class.
-
-* There are 3 *types* of variables:
-  
-  * Non-Static Variable.
-  
-  * Static Variable.
-  
-  * Local Variable.
-
-### Non-Static Variable
-
-- Variables with values *depending* upon the **object in context**,
-  
-  - which means that each object has a different value for the same variable.
-
-- Each object has a *separate copy* of non-static varibles.
-
-- Name of two non-static variables **cannot** be same.
-
-- Initialization is **optional**, JVM provides *default* values for un-initialized non-static variables.
-
-###### Declaration:
-
-- Declared *inside* the **class**, *outside* the **method, block or contructor**.
-  
-  ```java
-  class NSVExample
-  {
-      int x = 10; // Non-Static Variable
-      public static void main(String [] args)
-      {
-  
-      }
-  }
-  ```
-
-###### Access:
-
-- The only way to *access* a **non-static varible** is by **object-reference**.
-  
-  ```java
-  class NSVAccessExample
-  {
-      int x = 10; // Non-Static Variable
-      public static void main(String [] args)
-      {
-          NSVAccessExample obj1 = new NSVAccessExample();
-          NSVAccessExample obj2 = new NSVAccessExample();
-          System.out.println(obj1.x + " " +obj2.x);
-          obj1.x = 99;
-          obj2.x = -99;
-          System.out.println(obj1.x + " " +obj2.x);
-      }
-  }
-  ```
-
-###### Storage Area:
-
-- Stored in the **Heap Memory**.
-
-###### Memory Allocation:
-
-- Memory is allocated at run-time, *after* the **object creation**, and is present *within* the memory aloocated to the object.
-
-### Static Variable
-
-- Variables with *same* values, irrespective of the object in context.
-
-- Each object will share a ***common*** copy of the static variable.
-
-- Name of two static variables **cannot** be same.
-
-- Name of static and non-staic variables **cannot** be same, because of:
-  
-  - Same *Storage Area*.
-  
-  - Common way of access. &rarr; `Object Reference`
-
-- Initialization is **optional**, JVM provides *default* values for un-initialized static variables.
-
-###### Declaration:
-
-- Declared *inside* the **class**, *outside* the **method, block or constructor**, using the `static` keyword.
-  
-  ```java
-  class SVExample
-  {
-      static int x = 10; // Static Variable
-      public static void main(String [] args)
-      {
-  
-      }
-      static int y = 20; // Static Variable
-  }
-  ```
-
-###### Access:
-
-- There are *three* ways to access static variables:
-  
-  - Directly. &rarr; `... System.out.println(z); ...`
-  
-  - By `class` name(Recommended).&rarr; `... System.out.println(SVAccessExample.z); ...`
-  
-  - By `object` reference.&rarr; `... System.out.println(obj.z); ...`
-  
-  ```java
-  class SVAccessExample
-  {
-      static boolean z = true;
-      public static void main(String [] args)
-      {
-          SVAccessExample obj = new SVAccessExample();
-          System.out.println(z); // Directly
-          System.out.println(SVAccessExample.z); // By class Name
-          System.out.println(obj.z); // By object Reference
-      }
-  }
-  ```
+- JVM-provided default values for uninitialized variables:
 
 ```java
-class SVAccessExample
-{
-    int x = 10; // Non-Static Variable
-    public static void main(String [] args)
-    {
-        SVAccessExample obj1 = new SVAccessExample();
-        SVAccessExample obj2 = new SVAccessExample();
-        System.out.println(obj1.x + " " +obj2.x);
-        obj1.x = 99;
-        System.out.println(obj1.x + " " +obj2.x);
+class DefaultValues {
+    byte byteVal;
+    short shortVal;
+    int intVal;
+    long longVal;
+
+    float floatVal;
+    double doubleVal;
+
+    char charVal;
+    boolean boolVal;
+
+    DefaultValues dv;
+    String stringRef;
+    System systemRef;
+
+    public static void main(String[] args) {
+        DefaultValues obj = new DefaultValues();
+        System.out.println(obj.byteVal + "\n" + obj.shortVal + "\n" + obj.intVal + "\n" + obj.longVal);
+        System.out.println(obj.floatVal + "\n" + obj.doubleVal);
+        System.out.println(obj.charVal);
+        System.out.println(obj.boolVal);
+
+        System.out.println(obj.dv);
+        System.out.println(obj.stringRef + "\n" + obj.systemRef);
     }
 }
 ```
 
-###### Storage Area:
+---
 
-- Stored in the class/method area, but afterit is stored in the **Heap Memory**.
+## Types of Variables
 
-###### Memory Allocation:
+- Variables are categorized based on **where** and **how** they are declared within the class:
+  
+  - **Non-Static Variable**
+  
+  - **Static Variable**
+  
+  - **Local Variable**
 
-- Allocated the at the time of *class loading*.
+### Non-Static Variable
+
+- Values depend on the **object context**.
+
+- Each object has a **separate copy**.
+
+- Names of non-static variables **must be unique**.
+
+- Initialization is **optional**; JVM provides default values.
+
+#### Declaration
+
+```java
+class NonStaticVariableExample {
+    int instanceValue = 10; // Non-static variable
+    public static void main(String[] args) {
+    }
+}
+```
+
+#### Access
+
+- Accessed via **object reference**:
+
+```java
+class NonStaticVariableAccess {
+    int instanceValue = 10;
+    public static void main(String[] args) {
+        NonStaticVariableAccess obj1 = new NonStaticVariableAccess();
+        NonStaticVariableAccess obj2 = new NonStaticVariableAccess();
+        System.out.println(obj1.instanceValue + " " + obj2.instanceValue);
+        obj1.instanceValue = 99;
+        obj2.instanceValue = -99;
+        System.out.println(obj1.instanceValue + " " + obj2.instanceValue);
+    }
+}
+```
+
+#### Storage Area
+
+- Stored in **Heap Memory**.
+
+#### Memory Allocation
+
+- Occurs at **run-time**, after object creation.
+
+---
+
+### Static Variable
+
+- Value remains **common** across all objects.
+
+- Each object shares a **single copy**.
+
+- Static and non-static variables **cannot share the same name**.
+
+- Initialization is **optional**; JVM provides default values.
+
+#### Declaration
+
+```java
+class StaticVariableExample {
+    static int staticValue1 = 10;
+    static int staticValue2 = 20;
+    public static void main(String[] args) {
+    }
+}
+```
+
+#### Access
+
+- Accessed in three ways:
+  
+  - **Directly**
+  
+  - Using **class name** (Recommended)
+  
+  - Using **object reference**
+
+```java
+class StaticVariableAccess {
+    static boolean staticFlag = true;
+    public static void main(String[] args) {
+        StaticVariableAccess obj = new StaticVariableAccess();
+        System.out.println(staticFlag);                     // Direct
+        System.out.println(StaticVariableAccess.staticFlag); // Class name
+        System.out.println(obj.staticFlag);                  // Object reference
+    }
+}
+```
+
+#### Storage Area
+
+- Initially in the **Method Area**, then moved to **Heap Memory**.
+
+#### Memory Allocation
+
+- Occurs at **class loading** time.
+
+---
 
 ### Local Variable
 
-- Referred to as *temporary* variables.
-  
-  - After the completion of execution of the memory / code block where the varible is present, the local varible gets *destroyed* by the **JVM**.
+- Temporary variable; destroyed after the execution scope ends.
 
-- Name of two local variables **cannot** be same.
+- Names of local and non-static/static variables **can be the same**, but **local variables have higher precedence**.
 
-- Name of local variables and non-static variables **can** be same, as they have **different** modes of access.
+- Initialization is **mandatory** before use.
 
-- Name of local variables and static variables **can** be same.
-  
-  - But, **priority** is given to the local varibles due to it's *closer proximity*.
-  
-  ```java
-  class SVLV
-  {
-      static int x = 100;
-      public static void main(String [] args)
-      {
-          int x = 10;
-          System.out.println(x); // 10
-          System.out.println(SVLV.x); // 100
-      }
-  }
-  ```
+```java
+class ShadowingExample {
+    static int globalValue = 100;
+    public static void main(String[] args) {
+        int globalValue = 10;
+        System.out.println(globalValue);        // 10
+        System.out.println(ShadowingExample.globalValue); // 100
+    }
+}
+```
 
-- Initialization is **mandatory**, before using it.
-  
-  ```java
-  class LVExample
-  {
-      public static void main(String [] args)
-      {
-          int x, y; // Declared x, y.
-          y = 10; // Initialization of y.
-          System.out.println(y); // 10
-          // x is not initialized, but it is not being used.
-      }
-  }
-  ```
+```java
+class LocalVariableDemo {
+    public static void main(String[] args) {
+        int x, y;
+        y = 10;
+        System.out.println(y);
+    }
+}
+```
 
-- The concept of *Default Values* is **not** applicable to local variables.
+#### Declaration
 
-###### Declaration:
+- Declared **within methods or blocks** inside the class.
 
-- Declared *inside* the class and also *inside* a method.
-  
-  ```java
-  class LVExample
-  {
-      public static void main(String [] args)
-      {
-          int x = 10; // Local Variable
-      }
-  }
-  ```
+```java
+class LocalVariableDeclaration {
+    public static void main(String[] args) {
+        int localVar = 10; // Local Variable
+    }
+}
+```
 
-###### Access:
+#### Access
 
-- The only way to *access* a **local varible** is **directly**.
-  
-  ```java
-  class LVExample
-  {
-      public static void main(String [] args)
-      {
-          int x = 10;
-          System.out.println(x);
-      }
-  }
-  ```
+- Accessed **directly**:
 
-###### Storage Area:
+```java
+class LocalVariableAccess {
+    public static void main(String[] args) {
+        int localValue = 10;
+        System.out.println(localValue);
+    }
+}
+```
 
-- Stored in the **Stack Memory**.
+#### Storage Area
 
-###### Memory Allocation:
+- Stored in **Stack Memory**.
 
-- Allocated when the *method / code block* where the variable is present gets executed.
+#### Memory Allocation
+
+- Allocated **during method/code block execution**.
+
+---

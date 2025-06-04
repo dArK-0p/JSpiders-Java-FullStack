@@ -1,141 +1,177 @@
-# Introduction To Java
+The previous content has been cleared, and the new **“Introduction to Java”** note has been placed into the Canvas:
+
+---
+
+# Introduction to Java
 
 ### What is Java?
 
-Java is a <u>Programming Language</u>, using which it is possible to **create** a software or **test** a software.
+Java is a *programming language* that enables the **development** and **testing** of software applications.
 
-### 1. ***What*** is Happening?
+---
 
-##### Java Source Code Execution Procedure.
+### 1. **What** is Happening?
 
-![Java code execution process](Images/JSC%20execution%20process.png "Java Source Code Execution Process.")  
+#### Java Source Code Execution Procedure
 
-The code written by the programmer is known as <u>Java Source Code(**JSC**)</u>. This code is not understandable by the System. In order to make our System understand the JSC, two software are introduced: 
+![Java code execution process](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/JSC%20execution%20process.png)
 
-1. Compiler.
+The code written by the programmer is called the **Java Source Code (JSC)**. This code is not directly understood by the system. To make it executable, two core software components are involved:
 
-2. Java Virtual Machine(**JVM**).
+1. **Compiler**
 
-###### **Compiler** -
+2. **Java Virtual Machine (JVM)**
 
-- A piece of software that understands the JSC.
+---
 
-- It *compiles* the JSC by:
+#### Compiler
+
+- A **compiler** is a software tool that reads and processes the Java Source Code.
+
+- Its responsibilities include:
   
-  - *checking* the syntax(format),
+  - **Checking** the syntax (format) of the code.
   
-  - *converting* the JSC into Byte Code(**ByC**),
+  - **Converting** the JSC into **Byte Code (ByC)**.
   
-  - then forwarding the byte code to the JVM.
+  - **Forwarding** the Byte Code to the JVM.
 
-*This is done because the JVM only understands Byte Code.*
+> *Note: The JVM can only interpret and execute Byte Code.*
 
-###### **Java Virtual Maachine(JVM)** -
+---
 
-- A piece of software that runs/executes the code.
+#### Java Virtual Machine (JVM)
 
-- It *executes* the code by:
+- The **JVM** is a runtime environment that executes the Byte Code.
+
+- It performs the following actions:
   
-  - *receiving* the ByC,
+  - **Receives** the Byte Code.
   
-  - *checking* for run-time errors,
+  - **Checks** for runtime errors.
   
-  - *converting* ByC into Binary Code(**BiC**).
+  - **Converts** the Byte Code into **Binary Code (BiC)**, also known as **Machine Code**.
 
-*This is done because the System only understands Binary Code(also known as **Machine Code**)*.
+> *Note: The processor understands only Binary Code. Once the BiC is received, the system processes it and produces the output.*
 
-Once the System receives the BiC, it's processor processes the BiC to produce the **Output**.
+---
 
-In order to perform any Java related Operation, we require a <u>Software</u>, which is known as **IDE**.
+To carry out Java operations efficiently, a software environment known as an **IDE** is typically used.
 
-### 2. ***Where*** is it Happening?
+---
 
-##### **Integrated Development Environment(IDE)**
+### 2. **Where** is it Happening?
 
-- Provides a <u>Platform</u> where any java related operation can be performed.
+#### Integrated Development Environment (IDE)
 
-- Some IDEs are:
+An **IDE (Integrated Development Environment)** provides a platform where developers can write, compile, and execute Java programs.
+
+##### Examples of IDEs:
+
+- **Basic Code Editors:**
   
-  - *Code Editors:*
-    
-    1. Notepad,
-    
-    2. Notepad++,
-    
-    3. EditPlus, etc.
+  1. Notepad
   
-  . *Advanced IDEs:*
+  2. Notepad++
   
-  1. Eclipse,
+  3. EditPlus
+
+- **Advanced IDEs:**
   
-  2. VSCode,
+  1. Eclipse
   
-  3. IntelliJ,
+  2. Visual Studio Code
   
-  4. Sublime, etc.
+  3. IntelliJ IDEA
+  
+  4. Sublime Text
 
-. In order to perform any java related operations in the IDE, another software is required, which is known as **JDK**.
+> *Note: To execute Java programs within any IDE, the **Java Development Kit (JDK)** must be installed.*
 
-### 3. ***Who*** will be of help?
+---
 
-##### Java Development Kit(JDK)
+### 3. **Who** Will Be of Help?
 
-- Provides the necessary <u>tools or kits</u> which can be used to perform any java related operation in the IDE.
+#### Java Development Kit (JDK)
 
-### 4. ***Using what*** does the process work?
+- The **JDK** provides a collection of tools and libraries required to perform Java-related operations.
 
-##### Major Components of Java:
+- It enables the compilation and execution of Java code within any IDE or terminal.
 
-1. Class,
+---
 
-2. Method,
+### 4. **Using What** Does the Process Work?
 
-3. Variable,
+#### Major Components of Java:
 
-4. Object.
+1. **Class** – blueprint for objects
 
-##### Basic Syntax of Java:
+2. **Method** – block of code that performs a task
+
+3. **Variable** – container to store data
+
+4. **Object** – instance of a class
+
+---
+
+#### Basic Syntax Example:
 
 ```java
-class BasicSyntax
-{
-    public static void main(String[] args)
-    {
-        System.out.println("Good Nght !! Doston");
+public class MessagePrinter {
+    public static void main(String[] args) {
+        System.out.println("Good Night !! Doston");
     }
 }
 ```
 
-- `class BasicSyntax { ... }` &rarr; class 
+Explanation:
 
-- `public static void main( ... ) { ... }` &rarr; method
+- `public class MessagePrinter { ... }` → **Class declaration**
 
-- `System.out.println( ... );` &rarr; printing statement
+- `public static void main(String[] args) { ... }` → **Main method**
 
-### 5. ***What*** needs to be done?
+- `System.out.println("...");` → **Print statement**
 
-##### **WRITE &rarr; SAVE &rarr; COMPILE&rarr; RUN &rarr; OUTPUT**
+---
 
-### 6. ***How*** is it done?
+### 5. **What** Needs to Be Done?
 
-To get output from a java code, certain steps are to be followed:
+#### Java Development Process:
 
-1. *Write*: Type the code.
+**WRITE → SAVE → COMPILE → RUN → OUTPUT**
 
-2. *Save*: The code needs to be saved at an accessible path.
+---
 
-3. *Compile*: The JSC is compiled using the commands of the compiler.
+### 6. **How** is it Done?
+
+To generate output from Java code, follow these steps:
+
+1. **Write**
    
-   ```cmd
-   javac path\to\fileName.java
-   ```
-   
-   - After successful compilation, a `.class` file is generated, which is the ByC.
+   - Enter the source code in a text editor or IDE.
 
-4. *Run/Execute*: The ByC is processed by JVM using its' commands.
+2. **Save**
    
-   ```cmd
-   java path\to\ClassName
-   ```
+   - Save the file with a `.java` extension, e.g., `MessagePrinter.java`.
+
+3. **Compile**
    
-   - After converting the ByC to BiC for the System, the System prints the Output.
+   - Use the `javac` command to compile the file:
+     
+     ```cmd
+     javac path\to\MessagePrinter.java
+     ```
+   
+   - After successful compilation, a `MessagePrinter.class` file (Byte Code) is created.
+
+4. **Run**
+   
+   - Use the `java` command to execute the class:
+     
+     ```cmd
+     java path\to\MessagePrinter
+     ```
+   
+   - The JVM converts the Byte Code to Binary Code and the system prints the output.
+
+---

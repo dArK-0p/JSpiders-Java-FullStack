@@ -1,329 +1,239 @@
-# Inheritance
+# Inheritance in Java
 
-- The process of **acquiring** *properties* of one `class` by another `class`.
-  
-  - **Properties** = **Variables** + **Methods**.
+Inheritance is the mechanism by which one class **acquires** the properties (i.e., variables and methods) of another class.
 
-- The `class` that has it's *properties* **acquired**, is the **Parent/Super/Base** `class`.
+- **Properties** = Variables + Methods
 
-- The `class` that **acquires** the *properties*, is the **Child/Sub/Derived** `class`.
+- The class whose properties are inherited is called the **Parent / Super / Base** class.
 
-- `extends` keyword is used by the **child** class to mention the name of the **parent** class.
+- The class that inherits the properties is called the **Child / Sub / Derived** class.
 
-- **Parent** class reference cab be used to hold it's **child** class object. But vice-versa is **not** possible.
-  
-  - `ParentClass PC = new ChildClass();` ✅
-  
-  - `ChildClass PC = new ParentClass();` ❌
+- The keyword `extends` is used by the **child** class to specify its **parent** class.
 
-## Object Class
+- A **parent** class reference can hold an object of its **child** class, but the reverse is not allowed:
 
-- `Object` class is the **SUPER-MOST** class in Java.
-  
-  - **Every** class in Java, is a **child** class of `Object` class.
+```java
+ParentClass pc = new ChildClass(); // Valid
+ChildClass cc = new ParentClass(); // Invalid
+```
 
-- If a `class` *does not* **extend** any other class, then it is called **Direct Child** of `Object` class.
+---
 
-- If a `class` *does* **extend** any other class, then it is called **In-direct Child** of `Object` class.
+## **The Object Class**
 
-## Types
+- `Object` is the **root** superclass in Java.
 
-- There are **5** types of **Inheritance**:
-  
-  - *Single* Inheritance.
-  
-  - *Multi-level* Inheritance.
-  
-  - *Multiple* Inheritance.(**Not Applicable to Classes in Java.**)
-  
-  - *Hierarchical* Inheritance.
-  
-  - *Hybrid* Inheritance.
+- Every class in Java implicitly extends `Object` if no other superclass is specified.
 
-![](Images/Types%20of%20Inheritance.png)
+- A class that does **not** explicitly extend another class is called a **Direct Child** of `Object`.
 
-### Single Inheritance
+- A class that **extends** another class (except `Object`) is called an **Indirect Child** of `Object`.
 
-- **Requires** two classes, i.e. *Parent Class* and *Child Class*.
-  
-  ```java
-  class ParentClass
-  {
-      int var1 = 12; // Property of ParentClass
-      public void func1() // Property of ParentClass
-      {
-          System.out.println("In Parent class");
-      }
-  }
-  
-  class ChildClass extends ParentClass
-  {
-      int var2 = 11; // Property of ChildClass
-      public void func2() // Property of ChildClass
-      {
-          System.out.println("In Child class");
-      }
-      public static void main(String [] args)
-      {
-          ParentClass PC = new ParentClass();
-          ParentClass PC1 = new ChildClass();
-          ChildClass CC = new ChildClass();
-  
-          // Using PC
-          System.out.println(PC.var1);
-          PC.func1();
-  
-          // Using CC
-          System.out.println(CC.var1);
-          CC.func1();
-          System.out.println(CC.var2);
-          CC.func2();
-  
-          // Using PC1
-          System.out.println(PC1.var1);
-          PC1.func1();
-      }
-  }
-  ```
+---
 
-- **Parent** class method can be called using **Child** class *reference*. But vice-versa is **not** possible.
+## **Types of Inheritance**
 
-- **Child** class object can be created using **Parent** class *reference*. But vice-versa is **not** possible.
-  
-  - Because, **Parent** class *reference* can hold/refer to **Child** class object.
+Java supports the following **five types** of inheritance:
 
-- The method calling can be performed in any class, as long as it is the same page.
+1. **Single Inheritance**
 
-### Multi-level Inheritance
+2. **Multilevel Inheritance**
 
-- A **Child** class will the **Parent** class of **another** class.
+3. **Multiple Inheritance** (Not applicable to classes in Java)
 
-- Combination of *two* or *more than 2* **Single Inheritance**.
-  
-  ```java
-  class A
-  {
-      public static void func1()
-      {
-          System.out.println("In Class A.");
-      }
-  }
-  
-  class B extends A
-  {
-      public static void func2()
-      {
-          System.out.println("In Class B.");
-      }
-  }
-  
-  class C extends B
-  {
-      public static void func3()
-      {
-          System.out.println("In Class C.");
-      }
-  }
-  
-  class MultiLevelInheritance
-  {
-      public static void main(String [] args)
-      {
-          A a = new A();
-          B b = new B();
-          C c = new C();
-  
-          a.func1();
-          b.func1();
-          b.func2();
-          c.func1();
-          c.func2();
-          c.func3();
-      }
-  }
-  ```
+4. **Hierarchical Inheritance**
 
-- ### Hierarchical Inheritance
+5. **Hybrid Inheritance**
 
-- One **Parent** class and *multiple* **child** classes.
-  
-  ```java
-  class A
-  {
-      public static void func1()
-      {
-          System.out.println("In Class A.");
-      }
-  }
-  
-  class B extends A
-  {
-      public static void func2()
-      {
-          System.out.println("In Class B.");
-      }
-  }
-  
-  class C extends A
-  {
-      public static void func3()
-      {
-          System.out.println("In Class C.");
-      }
-  }
-  
-  class HierarchicalInheritance
-  {
-      public static void main(String [] args)
-      {
-          A a = new A();
-          B b = new B();
-          C c = new C();
-  
-          a.func1();
-          b.func1();
-          b.func2();
-          c.func1();
-          c.func3();
-      }
-  }
-  ```
+---
 
-### Multiple Inheritance
+### **Single Inheritance**
 
-- One **Child** class and multiple **Parent** class.
+- One child class inherits from one parent class.
 
-- **Not Applicable** to `classes` in java, due to the issue of **ambiguity**.
-  
-  - **Ambiguity** arises in a situation, when both *parent* class have methods with the same **Method Signature** and it is called from the *child* class.
-    
-    - Here, JVM is confused as to which method to be executed.
-  
-  - **Interfaces** can be used to implement **Multiple Inheritance**.
-  
-  ```java
-  class A
-  {
-      public static void func()
-      {
-          System.out.println("In Class A.");
-      }
-  }
-  
-  class B extends A
-  {
-      public static void func()
-      {
-          System.out.println("In Class B.");
-      }
-  }
-  
-  class MultipleInheritance extends A, B
-  {
-      public static void main(String [] args)
-      {
-          MultipleInheritance ob = new MultipleInheritance();
-          ob.func(); // can be A.func() or B.func() : Ambiguity.
-      }
-  }
-  ```
-
-### Hybrid Inheritance
-
-- *Combination* of **one** or **more** types of Inheritance.
-  
-  - All except **Multiple Inheritance**
-
-# 
-
-### VAR ARG
-
-- A type of *argument*, which can take **any** number of argument as an input, including no arguments.
-
-- **VAR ARG Method**:
-  
-  - A *method*, which takes a *var arg* as an argument.
-  
-  ```java
-  class VarArgMethod
-  {
-      public void varArgMethod(int...varArg)
-      {
-          System.out.println("Hello...");
-          for(int i : varArg)
-              System.out.println(i);
-          for(int i = 0; i < varArg.length; i++)
-              System.out.println(varArg[i]);
-      }
-      public static void main(String [] args)
-      {
-          VarArgMethod ob = new VarArgMethod();
-          ob.varArgMethod();
-          ob.varArgMethod(1);
-          ob.varArgMethod(1, 2);
-          ob.varArgMethod(1, 2, 3);
-      }
-  }
-  ```
-
-- Rules:
-  
-  - **Exact match** is preferred over *VAR ARG*.
-    
-    ```java
-    class Rule1
-    {
-        public void func(int...varArg)
-        {
-            System.out.println("Hello VAR ARG...");
-            for(int i : varArg)
-                System.out.println(i);
-        }
-    
-        public void func(int Arg)
-        {
-            System.out.println("Hello Single ARG...");
-            System.out.println(i);
-        }
-    
-        public static void main(String [] args)
-        {
-            (new Rule1()).func(1);
-        }
+```java
+class ParentClass {
+    int var1 = 12;
+    public void func1() {
+        System.out.println("In Parent class");
     }
-    ```
-  
-  - **Up-cast match** is preferred over *VAR ARG*.
-    
-    - **Up-casting** is older technique than *VAR ARG*.
-    
-    ```java
-    class Rule2
-    {
-        public void func(int...varArg)
-        {
-            System.out.println("Hello VAR ARG...");
-            for(int i : varArg)
-                System.out.println(i);
-        }
-    
-        public void func(long Arg)
-        {
-            System.out.println("Hello Single ARG...");
-            System.out.println(i);
-        }
-    
-        public static void main(String [] args)
-        {
-            (new Rule2()).func(1);
-        }
+}
+
+class ChildClass extends ParentClass {
+    int var2 = 11;
+    public void func2() {
+        System.out.println("In Child class");
     }
-    ```
-  
-  - **VAR ARG** is always the *last* parameter.
-    
-    - Compilation Error if violated.
-  
-  - There can be only **1** **VAR ARG** in a method parameter.
-    
-    - `public void func(int...a, int...b) {/* ... */}` &rarr; a **violates** the last parameter rule.
+
+    public static void main(String[] args) {
+        ParentClass pc = new ParentClass();
+        ParentClass pc1 = new ChildClass();
+        ChildClass cc = new ChildClass();
+
+        System.out.println(pc.var1);
+        pc.func1();
+
+        System.out.println(cc.var1);
+        cc.func1();
+        System.out.println(cc.var2);
+        cc.func2();
+
+        System.out.println(pc1.var1);
+        pc1.func1();
+    }
+}
+```
+
+- A child class object can be referenced by a parent class variable (polymorphism).
+
+- The reverse (assigning a parent object to a child reference) is **not allowed**.
+
+---
+
+### **Multilevel Inheritance**
+
+- A class inherits from a child class which in turn inherits from another class, forming a chain.
+
+```java
+class A {
+    public static void func1() {
+        System.out.println("In Class A.");
+    }
+}
+
+class B extends A {
+    public static void func2() {
+        System.out.println("In Class B.");
+    }
+}
+
+class C extends B {
+    public static void func3() {
+        System.out.println("In Class C.");
+    }
+}
+
+class MultiLevelInheritance {
+    public static void main(String[] args) {
+        A a = new A();
+        B b = new B();
+        C c = new C();
+
+        a.func1();
+        b.func1();
+        b.func2();
+        c.func1();
+        c.func2();
+        c.func3();
+    }
+}
+```
+
+---
+
+### **Hierarchical Inheritance**
+
+- One parent class has multiple child classes.
+
+```java
+class A {
+    public static void func1() {
+        System.out.println("In Class A.");
+    }
+}
+
+class B extends A {
+    public static void func2() {
+        System.out.println("In Class B.");
+    }
+}
+
+class C extends A {
+    public static void func3() {
+        System.out.println("In Class C.");
+    }
+}
+
+class HierarchicalInheritance {
+    public static void main(String[] args) {
+        A a = new A();
+        B b = new B();
+        C c = new C();
+
+        a.func1();
+        b.func1();
+        b.func2();
+        c.func1();
+        c.func3();
+    }
+}
+```
+
+---
+
+### **Multiple Inheritance**
+
+- A class inherits from **multiple parent classes**.
+
+- **Not supported in Java** through classes due to the **ambiguity problem**.
+
+- Supported via **interfaces**.
+
+```java
+class A {
+    public static void func() {
+        System.out.println("In Class A.");
+    }
+}
+
+class B extends A {
+    public static void func() {
+        System.out.println("In Class B.");
+    }
+}
+
+// Invalid in Java:
+// class MultipleInheritance extends A, B { ... }
+```
+
+> If multiple parent classes define the same method, the JVM cannot determine which one to use — this is the **diamond problem**.
+
+---
+
+### **Hybrid Inheritance**
+
+- A combination of more than one type of inheritance (excluding multiple via classes).
+
+- Possible in Java through **interfaces**.
+
+```java
+interface A {
+    default void funcA() {
+        System.out.println("Inside Interface A");
+    }
+}
+
+interface B {
+    default void funcB() {
+        System.out.println("Inside Interface B");
+    }
+}
+
+// Hierarchical + Multiple (via interfaces) = Hybrid
+class C implements A, B {
+    public void funcC() {
+        System.out.println("Inside Class C");
+    }
+}
+
+class HybridInheritanceDemo {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.funcA();  // from Interface A
+        obj.funcB();  // from Interface B
+        obj.funcC();  // from Class C
+    }
+}
+```
+
+---

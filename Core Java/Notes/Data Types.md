@@ -1,124 +1,147 @@
-# Data Types
+# Data Types in Java
 
-###### Definition 1: *Outdated*
+## **Definition**
 
-- Every *data* has some *type* and that type is known as <u>Data</u> <u>Type</u>.
+> A **data type** defines the kind of data a variable can store in its allocated memory.
 
-###### Definition 2: *Better*
+> *(Previous version: “Every data has some type, and that type is known as a Data Type.” — outdated)*
 
-- *Data type* will *define* the type of data that a variable can *hold/store* in it's memory allocation.
+---
 
-## Types of Data Types in Java
+## **Types of Data Types in Java**
 
-- There are two types of Data Types:
-  - Primitive
-  - Non-Primitive
+Java supports two broad categories of data types:
 
-#### **Primitive** Data Type:
+- **Primitive Data Types**
 
-- These are the data types that can only store <u>values</u>.
+- **Non-Primitive Data Types**
 
-- There are 8 types of Primitive data types:
+---
 
-![Data Types](Images/Data%20Type.png)
+## **Primitive Data Types**
+
+- These types store **only values**, not references.
+
+- Java defines **8 primitive types**:
+  
+  - `byte`, `short`, `int`, `long`
+  
+  - `float`, `double`
+  
+  - `char`
+  
+  - `boolean`
+
+**Diagram:**  
+![](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Data%20Type.png)
+
+### **Example:**
 
 ```java
-class PrimitiveDataTypes
-{
-    public static void main(String [] args)
-    {
+class PrimitiveDataTypes {
+    public static void main(String[] args) {
         byte b = 123;
         short s = 12345;
         int i = 12;
-        long l = 12L; // L / l is used to denote long values.
-        float f = 1.1F; // F / f is used to denote float values.
-        double d = 2.2D; // D / d is used to denote double values.
+        long l = 12L;         // L denotes long
+        float f = 1.1F;       // F denotes float
+        double d = 2.2D;      // D denotes double
         char c = 'a';
         boolean bo = true;
+
         System.out.println(b + "\n" + s + "\n" + i + "\n" + l);
         System.out.println(f + "\n" + d);
         System.out.println(c);
-        System.out.println(bo);    }
+        System.out.println(bo);
+    }
 }
 ```
 
-#### **Non-Primitive** Data Type:
+---
 
-- Non-primitive data types are called **reference types** because they refer to <u>objects</u>.
+## **Non-Primitive Data Types**
 
-##### Object:
+- Also known as **reference types** because they store **addresses** to objects in memory.
 
-- A <u>real world</u> entity which has some **State** and **Behavior**.
-  
-  - *State* is represented by *Variables*.
-  
-  - *Behavio
+### **Object**
 
-- Creating an Object.
-  
-  ```java
-  class ObjectCreation
-  {
-      public static void main(String [] args)
-      {
-          ObjectCreation ob = new ObjectCreation();
-      }
-  }
-  ```
-  
-  ![Object Creation](Images/Object%20Creation.png)
+An **object** is a real-world entity characterized by:
 
-- More than one object of a class can be created, given that none of those objects share thier identifiers.
-  
-  - i.e. names of the reference variables must be different.
-    
-    ```java
-    class MultipleObjects
-    {
-        public static void main(String [] args)
-        {
-            MultipleObjects ob1 = new MultipleObjects();
-            MultipleObjects ob2 = new MultipleObjects();
-            MultipleObjects ob3 = new MultipleObjects();
-            MultipleObjects ob4 = new MultipleObjects();
-        }
-    }
-    ```
+- **State** – represented by variables
 
-- The <u>reference variable</u> **stores** the *address* of the *object* present in the **Heap Memory**.
-  
-  ```java
-  class ObjectAddress
-  {
-      public static void main(String [] args)
-      {
-          ObjectAddress ob1 = new ObjectAddress();
-          ObjectAddress ob2 = new ObjectAddress();
-          System.out.println(ob1 + "\n" + ob2);
-      }
-  }
-  ```
+- **Behavior** – defined by methods
 
-## Miscellaneous Examples
+### **Object Creation Example:**
 
 ```java
-byte b = 127;
-b++;
-System.out.println(b);
+class ObjectCreation {
+    public static void main(String[] args) {
+        ObjectCreation ob = new ObjectCreation();
+    }
+}
 ```
 
-###### Output:
+**Diagram:**  
+![](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Object%20Creation.png)
+
+### **Multiple Objects Example:**
 
 ```java
+class MultipleObjects {
+    public static void main(String[] args) {
+        MultipleObjects ob1 = new MultipleObjects();
+        MultipleObjects ob2 = new MultipleObjects();
+        MultipleObjects ob3 = new MultipleObjects();
+        MultipleObjects ob4 = new MultipleObjects();
+    }
+}
+```
+
+### **Reference Variable Address Example:**
+
+```java
+class ObjectAddress {
+    public static void main(String[] args) {
+        ObjectAddress ob1 = new ObjectAddress();
+        ObjectAddress ob2 = new ObjectAddress();
+        System.out.println(ob1);
+        System.out.println(ob2);
+    }
+}
+```
+
+> *Note: The reference variable stores the address of the object in the **heap memory.***
+
+---
+
+## **Miscellaneous Example**
+
+```java
+class ByteOverflow {
+    public static void main(String[] args) {
+        byte b = 127;
+        b++;
+        System.out.println(b);
+    }
+}
+```
+
+### **Output:**
+
+```
 -128
 ```
 
-- Value of a <u>variable</u> of a *certain data type* can vary only within it's range.
-  
-  - *This applies to all data types with a range.*
-  
-  <img title="" src="Images/Bound%20by%20Range.png" alt="" data-align="center">
+> *The value overflows and wraps around the range for the `byte` data type (−128 to 127).*
 
-### Method Resolution
+**Diagram:**  
+![](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Bound%20by%20Range.png)
 
-![](Images/Method%20Resolution.png)
+---
+
+## **Method Resolution**
+
+**Diagram:**  
+![](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Method%20Resolution.png)
+
+---

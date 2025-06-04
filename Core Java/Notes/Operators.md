@@ -1,47 +1,46 @@
-# Operators
+# Operators in Java
 
-- Special *symbols* in Java, which are used to perform certain <u>operations</u> on <u>operands</u>.
+Operators are special **symbols** in Java used to perform specific **operations** on **operands**.
 
-- `10 + 20` &rarr; `+` is the *operator*, while `10, 20` are *operands*.
-
-- The operators are categorized into *3 types*, on the basis of <u>no. of operands</u> being used with it.
+- Example: `10 + 20`
   
-  1. **Unary** Operators: **1** <u>Operand</u>
-     -
+  - `+` → operator
   
-  2. **Binary** Operator: **2** <u>Operands</u>
-     -
-  
-  3. **Ternary** Operator: **3** <u>Operands</u>
-     -
+  - `10`, `20` → operands
 
-## Unary Operators
+Java operators are classified into **three types**, based on the number of operands:
 
-- Unary operators are **only applicable for** <u>variables</u> but **not for** *values*.
+1. **Unary Operators** – operate on **one operand**
 
-- `++10`, `++(x++)`, result in error as both `10` and the expression `x++` are values.
-  
-  - `x++` returns the incremented **value** of `x`.
+2. **Binary Operators** – operate on **two operands**
 
-- Increment and Decrement operations support all primitive data types **except** *boolean*.
+3. **Ternary Operators** – operate on **three operands**
 
-### Increment Operator: `++`
+---
 
-- *Increases* value of a variable by **adding 1** to it.
+## 1. Unary Operators
 
-- Types:
-  
-  - **Pre**-increment.
-  
-  - **Post**-increment
+Unary operators apply **only to variables**, not to literal values or expressions.
 
-###### Pre-Increment Operator
+- Invalid: `++10`, `++(x++)` (as both are **values**, not variables)
+
+- All primitive types support unary operations **except** `boolean`.
+
+### Increment Operator (`++`)
+
+Increments the value of a variable by 1.
+
+#### Types:
+
+- **Pre-increment**: `++x` → Increments before assignment
+
+- **Post-increment**: `x++` → Increments after assignment
+
+#### Example – Pre-Increment
 
 ```java
-class PreIncrement
-{
-    public static void main(String [] args)
-    {
+class PreIncrement {
+    public static void main(String[] args) {
         int x = 12;
         int y = ++x;
         System.out.println(x + " " + y); // 13 13
@@ -49,17 +48,13 @@ class PreIncrement
 }
 ```
 
-- Value is *increased* &rarr; Value is *assigned*.
+> `INCREMENT` → `ASSIGN` → `INITIALIZE`
 
-- `INCREASE` &rarr; `ASSIGN` &rarr; `INITIALIZE` 
-
-###### Post-Increment Operator
+#### Example – Post-Increment
 
 ```java
-class PostIncrement
-{
-    public static void main(String [] args)
-    {
+class PostIncrement {
+    public static void main(String[] args) {
         int x = 12;
         int y = x++;
         System.out.println(x + " " + y); // 13 12
@@ -67,27 +62,25 @@ class PostIncrement
 }
 ```
 
-* Value is *assigned* &rarr; Value is *increased*.
+> `ASSIGN` → `INCREMENT` → `INITIALIZE`
 
-* `ASSIGN` &rarr; `INCREASE` &rarr; `INITIALIZE`
+---
 
-### Decrement Operator: `--`
+### Decrement Operator (`--`)
 
-* *Decreases* value of a variable by **substracting 1** to it.
+Decreases the value of a variable by 1.
 
-* Types:
-  
-  * **Pre**-decrement.
-  
-  * **Post**-decrement
+#### Types:
 
-###### Pre-Decrement Operator
+- **Pre-decrement**: `--x`
+
+- **Post-decrement**: `x--`
+
+#### Example – Pre-Decrement
 
 ```java
-class PreDecrement
-{
-    public static void main(String [] args)
-    {
+class PreDecrement {
+    public static void main(String[] args) {
         int x = 12;
         int y = --x;
         System.out.println(x + " " + y); // 11 11
@@ -95,17 +88,11 @@ class PreDecrement
 }
 ```
 
-* Value is *decreased* &rarr; Value is *assigned*.
-
-* `DECREASE` &rarr; `ASSIGN` &rarr; `INITIALIZE`
-
-###### Post-Decrement Operator
+#### Example – Post-Decrement
 
 ```java
-class PostDecrement
-{
-    public static void main(String [] args)
-    {
+class PostDecrement {
+    public static void main(String[] args) {
         int x = 12;
         int y = x--;
         System.out.println(x + " " + y); // 11 12
@@ -113,92 +100,75 @@ class PostDecrement
 }
 ```
 
-* Value is *assigned* &rarr; Value is *decreased*.
+---
 
-* `ASSIGN` &rarr; `DECREASE` &rarr; `INITIALIZE`
+### Self-Assignment Case
 
-#### <u>Self-Assignment Case</u>
+When using `x = x++`, the value of `x` remains unchanged.
 
 ```java
-class SelfAssignment
-{
-    public static void main(String [] args)
-    {
+class SelfAssignment {
+    public static void main(String[] args) {
         int x = 10;
-        System.out.println(x); // 10
-        x = x++;
-        System.out.println(x); // 10
-        x = x++;
-        System.out.println(x); // 10
-        x = x++;
-        System.out.println(x); // 10
-        x = x++;
-        System.out.println(x); // 10
-
+        for (int i = 0; i < 5; i++) {
+            x = x++;
+            System.out.println(x); // Always prints 10
+        }
     }
 }
 ```
 
-- A **special case** where using the <u>increment/decrement</u> operation does not update the variable.
+- `x = x++` stores the old value in `x`, not the incremented value.
 
-- This scenario is encountered when using the same variable to store the expression `x++` or `x--`.
+- To ensure the value updates, use `x = ++x`.
 
-- To avoid this, pre-increment/pre-decrement is used.
-  
-  - `x = x++` or `x = x--` ❌
-  
-  - `x = ++x` or `x = --x` ✅
-  
-  ![](Images/Self-Assignment%20Case.png)
+![Self-Assignment Case](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Self-Assignment%20Case.png)
 
-### Bit-wise Complement Operator: `~`
+---
 
-- Applicable only for *integer type* operand and **does not** work for boolean.
+### Bitwise Complement (`~`)
 
-- Works by *adding* **1** to the operand and then *flipping* it's sign.
-  
-  ```java
-  class BitwiseComplement
-  {
-      public static void main(String [] args)
-      {
-          int i = -7;
-          System.out.println(~i); // 6
-          System.out.println(~4); // -5
-          System.out.println(~22); // -23
-          System.out.println(~('a')); // -98
-      }
-  }
-  ```
+- Only for **integer** types
 
-### Boolean Complement Operator: `!`
-
-- Applicable only for *boolean values*.
-
-- Works by *flipping* the value of operand.
-  
-  ```java
-  class BooleanComplement
-  {
-      public static void main(String [] args)
-      {
-          boolean b = true;
-          System.out.println(!b); // false
-          System.out.println(!true); // false
-          System.out.println(!false); // true
-      }
-  }
-  ```
-
-## Binary Operators
-
-### Arithmatic Operators: `+` `-` `*` `/` `%`
+- Not applicable to `boolean`
 
 ```java
-class ArithmaticOperators
-{
-    public static void main(String [] args)
-    {
+class BitwiseComplement {
+    public static void main(String[] args) {
+        System.out.println(~(-7));     // 6
+        System.out.println(~4);        // -5
+        System.out.println(~22);       // -23
+        System.out.println(~'a');      // -98
+    }
+}
+```
+
+---
+
+### Boolean Complement (`!`)
+
+- Only for **boolean** type
+
+```java
+class BooleanComplement {
+    public static void main(String[] args) {
+        boolean b = true;
+        System.out.println(!b);       // false
+        System.out.println(!true);    // false
+        System.out.println(!false);   // true
+    }
+}
+```
+
+---
+
+## 2. Binary Operators
+
+### Arithmetic Operators: `+` `-` `*` `/` `%`
+
+```java
+class ArithmeticOperators {
+    public static void main(String[] args) {
         int a = 10, b = 2;
         System.out.println(a + b); // 12
         System.out.println(a - b); // 8
@@ -209,222 +179,97 @@ class ArithmaticOperators
 }
 ```
 
-- When an operator is used with it's operands, it is called an *expression*.
-  
-  - E.g.: `a + b`, `a - b`, etc.
+> Result data type = `max(int, type of operand1, type of operand2)`
 
-- The data type of the expression is decided by a rule: 
-  
-  - **max(** `int`, *data type of operand1*, *data type of operand2* **)**
+![Type Conversion](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Type%20Conversion.png)
 
-![](Images/Type%20Conversion.png)
+---
 
-#### String Concatenation: `+`
-
-- This is a special use of the `+` operator.
-
-- If one of the operands is a **String** Object then, both the operands are *merged*.
-  
-  - The output is of **String** type.
-  
-  ```java
-  class StringConcatenation
-  {
-      public static void main(String [] args)
-      {
-          byte b = 1; short s = 2; int i = 4; long l = 8l;
-          float f = 4.0f; double d = 8.0d;
-          char c = '2';
-          boolean bo = true;
-          System.out.println("Sambit" + b); // Sambit1
-          System.out.println("Sambit" + s); // Sambit2
-          System.out.println("Sambit" + i); // Sambit4
-          System.out.println("Sambit" + l); // Sambit8
-          System.out.println("Sambit" + f); // Sambit4.0
-          System.out.println("Sambit" + d); // Sambit8.0
-          System.out.println("Sambit" + c); // Sambit2
-          System.out.println("Sambit" + bo); // Sambittrue
-      }
-  }
-  ```
-
-- The main use of this is to make *print* statements more human readable.
-
-### Relational Operator: `<` `<=` `>` `>=`
-
-- The *expression* of relational operators always return **boolean** values.
-
-- These operators are **applicable** to all *primitive data type* **except** *boolean*.
+### String Concatenation using `+`
 
 ```java
-class RelationalOperators
-{
-    public static void main(String [] args)
-    {
-        System.out.println(10 < 20); // true
-        System.out.println(12 <= 12.65); // true
-        System.out.println(97 > 'a'); // false
-        System.out.println(97 >= 'a'); // true
+class StringConcatenation {
+    public static void main(String[] args) {
+        int i = 4;
+        boolean b = true;
+        char c = '2';
+        System.out.println("Result: " + i);       // Result: 4
+        System.out.println("Boolean: " + b);      // Boolean: true
+        System.out.println("Char: " + c);         // Char: 2
     }
 }
 ```
 
-### Equality Operator: `==`
+---
 
-- This operator works with all *primitive* and *non-primitive* data types.
-  
-  - It's return type is **Boolean**.
-
-- In case of primitive data types, the equality operator **compares** the values of the operands.
-  
-  - If *values* are *same* &rarr;  returns **true**.
-  
-  - If *values* are *different* &rarr; returns **false**.
-
-- In case of non-primitive data types, the equality operator **compares** the reference variables.
-  
-  * If *reference variables* point to the *same* object &rarr; returns **true**.
-  
-  * If *reference variables* point to *distinct* objects &rarr; returns **false**.
+### Relational Operators: `<` `<=` `>` `>=`
 
 ```java
-class EqualityOperator
-{
-    public static void main(String [] args)
-    {
-        int x = 10, y = 10, z = 20;
+class RelationalOperators {
+    public static void main(String[] args) {
+        System.out.println(10 < 20);      // true
+        System.out.println(12 <= 12.65);  // true
+        System.out.println(97 > 'a');     // false
+        System.out.println(97 >= 'a');    // true
+    }
+}
+```
+
+---
+
+### Equality Operator: `==`
+
+```java
+class EqualityOperator {
+    public static void main(String[] args) {
+        int x = 10, y = 10;
         EqualityOperator ob1 = new EqualityOperator();
         EqualityOperator ob2 = new EqualityOperator();
         EqualityOperator ob3 = ob1;
-        System.out.println(x == y); // true
-        System.out.println(x == z); // false
+        System.out.println(x == y);   // true
         System.out.println(ob1 == ob2); // false
         System.out.println(ob1 == ob3); // true
     }
 }
 ```
 
-### Assignment Operator: `=`
+---
 
-- **Assigns** *value* to a <u>variable</u> or *variable* to an <u>object</u>.
+### Assignment Operators: `=`, `+=`, `-=`, etc.
 
-- Types:
-  
-  - Simple Assignment.
-  
-  - Chain Assignment.
-  
-  - Compound Assignment.
-
-- Simple Assignment:
-  
-  - 
-
-- Chain Assignment:
-  
-  - Assigning a single *value* to **multiple** variables, simultaneously.
-    
-    ```java
-    class ChainAssignment
-    {
-        public static void main(String [] args)
-        {
-            int a, b, c;
-            ChainAssignment ob, obj;
-            a = b = c = 10;
-            ob = obj = new ChainAssignment();
-            System.out.println(a + " " + b + " " + c); // 10 10 10
-            System.out.println(ob + " " + obj); // address address
-            // Both ob and obj point to the same object.
-        }
-    }
-    ```
-
-- Compound Assignment:
-  
-  - Using any other operator as *prefix* with assignment operator.
-    
-    ```java
-    class CompoundAssignment
-    {
-        public static void main(String [] args)
-        {
-            int a = 10;
-            System.out.println(a); // 10
-            a += 10; // -> a = a + 10;
-            System.out.println(a); // 20
-            a -= 1; // -> a = a - 1;
-            System.out.println(a); // 19
-            a *= 2; // -> a = a * 2;
-            System.out.println(a); // 38
-            a /= 2; // -> a = a / 2;
-            System.out.println(a); // 19
-        }
-    }
-    ```
-
-### Bit-wise Operator: `&` `|` `^`
-
-- The **bit-wise operators** are applicable for **all** *primitive* data type **except** the *floating point* data types.
-
-###### Bit-wise AND: `&`
-
-- *Returns* **true** only when both the arguments are **true**.
-  
-  ```java
-  class BitwiseAND
-  {
-      public static void main(String [] args)
-      {
-          System.out.println(true & true); // true
-          System.out.println(true & false); // false
-          System.out.println(false & true); // false
-          System.out.println(false & false); // false
-      }
-  }
-  ```
-
-###### Bit-wise OR: `|`
-
-* *Returns* **false** only when both the arguments are **false**.
-  
-  ```java
-  class BitwiseOR
-  {
-      public static void main(String [] args)
-      {
-          System.out.println(true | true); // true
-          System.out.println(true | false); // true
-          System.out.println(false | true); // true
-          System.out.println(false | false); // false
-      }
-  }
-  ```
-
-###### Bit-wise **XOR**: `^`
-
-* *Returns* **true** only when both the arguments are **different**.
-  
-  ```java
-  class BitwiseXOR
-  {
-      public static void main(String [] args)
-      {
-          System.out.println(true ^ true); // false
-          System.out.println(true ^ false); // true
-          System.out.println(false ^ true); // true
-          System.out.println(false ^ false); // false
-      }
-  }
-  ```
-
-###### Miscellaneous
+#### Chain Assignment
 
 ```java
-class BitwiseOperators
-{
-    public static void main(String [] args)
-    {
+class ChainAssignment {
+    public static void main(String[] args) {
+        int a, b, c;
+        a = b = c = 10;
+        System.out.println(a + " " + b + " " + c); // 10 10 10
+    }
+}
+```
+
+#### Compound Assignment
+
+```java
+class CompoundAssignment {
+    public static void main(String[] args) {
+        int a = 10;
+        a += 5;
+        a *= 2;
+        a -= 4;
+        System.out.println(a); // 26
+    }
+}
+```
+
+---
+
+### Bitwise Operators: `&`, `|`, `^`
+
+```java
+class BitwiseOperators {
+    public static void main(String[] args) {
         System.out.println(4 & 5); // 4
         System.out.println(4 | 5); // 5
         System.out.println(4 ^ 5); // 1
@@ -432,68 +277,46 @@ class BitwiseOperators
 }
 ```
 
-|        | 8   | 4   | 2   | 1   |     |
-| ------:|:---:|:---:|:---:|:---:| --- |
-| **4**  | 0   | 1   | 0   | 0   |     |
-| **5**  | 0   | 1   | 0   | 1   |     |
-| **&**  | 0   | 1   | 0   | 0   | = 4 |
-| **\|** | 0   | 1   | 0   | 1   | = 5 |
-| **^**  | 0   | 0   | 0   | 1   | = 1 |
+| Bit | 8   | 4   | 2   | 1     |
+| --- | --- | --- | --- | ----- |
+| 4   | 0   | 1   | 0   | 0     |
+| 5   | 0   | 1   | 0   | 1     |
+| `&` | 0   | 1   | 0   | 0 = 4 |
+| `   | `   | 0   | 1   | 0     |
+| `^` | 0   | 0   | 0   | 1 = 1 |
 
-### Logical Operators: `&&` `||`
+---
 
-- *Executes* 2$^{nd}$ operand based on the **output** of 1$^{st}$ operand.
+### Logical Operators: `&&`, `||`
 
-- Types:
-  
-  - Logical AND: `&&`
-    
-    - 2$^{nd}$ operand will be *executed* **If and only If** 1$^{st}$ operand is **true**.
-  
-  - Logical OR: `||`
-    
-    - 2$^{nd}$ operand will be *executed* **If and only If** 1$^{st}$ operand is **false**.
-  
-  ```java
-  class LogicalOperators
-  {
-      public static void main(String [] args)
-      {
-          boolean result;
-  
-          // Logical AND
-          result = ( (10 > 2) && (12 != 12) );
-          System.out.println(result); // false
-          result = ( (10 > 2) && (12 == 12) );
-          System.out.println(result); // true
-  
-          // Logical OR
-          result = ( (10 > 2) || (12 != 12) );
-          System.out.println(result); // true
-          result = ( (10 < 2) || (12 != 12) );
-          System.out.println(result); // false
-      }
-  }
-  ```
+```java
+class LogicalOperators {
+    public static void main(String[] args) {
+        boolean result;
 
-## Ternary Operator:
+        result = (10 > 2) && (12 == 12);
+        System.out.println(result); // true
 
-# ## Conditional Operator: `?:`
+        result = (10 < 2) || (12 != 12);
+        System.out.println(result); // false
+    }
+}
+```
 
-- **Syntax**: `(condition) ? Statement1 : Statement2`
+---
 
-- If *condition* is **true**, `Statement1` will get executed.
+## 3. Ternary Operator: `?:`
 
-- If *condition* is **false**, `Statement2` will get executed.
-  
-  ```java
-  class TernaryOperator
-  {
-      public static void main(String [] args)
-      {
-          int s = (1 > 0) ? 1000 : 2000;
-          String S = (false) ? "Sagar" : "Sambit";
-          System.out.println(s + " " + S); // 1000 Sambit
-      }
-  }
-  ```
+### Conditional Expression
+
+```java
+class TernaryOperator {
+    public static void main(String[] args) {
+        int result = (1 > 0) ? 1000 : 2000;
+        String name = (false) ? "Sagar" : "Sambit";
+        System.out.println(result + " " + name); // 1000 Sambit
+    }
+}
+```
+
+---

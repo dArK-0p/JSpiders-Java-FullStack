@@ -1,345 +1,175 @@
-# Object Oriented Programming Concepts
+# Data Hiding
 
-## Class
+- The process of **restricting direct access** to internal data from outside the class.
 
-- `class` is a **blueprint** of the *Object*.
+- Enhances **security** by shielding sensitive information.
 
-- `class` is a *conceptual* boundary within which we *define* it's **behavior** and **properties**.
-
-- `class` is a **template** using which object(s) can be created and these objects share *common* properties according to the **template**.
-
-## Method
-
-- Also known as **behavior** of `class`.
-
-- These are **blocks of code**, which contain either *business* logic or *application* logic. 
-
-- There are **two** parts of a method:
-  
-  - *Declaration*
-  
-  - *Implementation*
-  
-  ![](Images/Method.png)
-
-- Naming of **methods** follows **camel case** rule.
-
-- Multiple method **can** be declared in a class, **given that** they differ in *name* or *parameter list* or *both*.
-
-- `main` method is **necessary** to start the *execution* of the code.
-  
-  - Because, **JVM** starts execution **from** the `main` method.
-
-- We cannot declare a method inside another method, but we can call a method inside another method.
-
-### Types
-
-- There are **two** type:
-  
-  - *Static*.
-  
-  - *Non-Static*.
-
-- A method *declared* using **static** keyword, is called **Static Method**.
-
-- A method *declared* *without* using **static** keyword, is called **Non-Static Method**.
-  
-  ```java
-  class TypesOfMethod
-  {
-      public static void staticMethod()
-      {
-          System.out.println("This is a Static Method.");
-      }
-  
-      public void nonStaticMethod()
-      {
-          System.out.println("This is a Non-Static Method.");
-      }
-  }
-  ```
-
-#### Calling of Static and Non-Static Methods.
-
-- A ***static*** method can be called in **3** ways:
-  
-  - *Directly*.
-  
-  - By *Class Name* reference.
-  
-  - By *Object* reference.
-
-- A ***non-static*** method can be called in only **1** way.
-  
-  - By *Object* reference.
-  
-  ```java
-  class CallingOfMethod
-  {
-      public static void staticMethod()
-      {
-          System.out.println("This is a Static Method.");
-      }
-  
-      public void nonStaticMethod()
-      {
-          System.out.println("This is a Non-Static Method.");
-      }
-  
-      public static void main(String [] args)
-      {
-          CallingOfMethod ob = new CallingOfMethod();
-  
-          // Static Method.
-          staticMethod(); // -> Directly.
-          CallingOfMethod.staticMethod(); // -> By class name ref.
-          ob.staticMethod(); // -> By object ref.
-          (new CallingOfMethod()).staticMethod(); // -> By object.
-  
-          // Non-Static Method.
-          ob.nonStaticMethod(); // -> By object ref.
-          (new CallingOfMethod()).nonStaticMethod(); // -> By object.
-      }
-  }
-  ```
-
-**Any** type of method **can** be called by **Any** other method.
-
-- But, the calling will **always** begin from `main` method.
+- Achieved using the `private` access modifier.
 
 ```java
-class StaticNonStatic
-{
-    public void func()
-    {
-        System.out.println("Function");
+class DataHiding {
+    private double balance; // cannot be accessed outside the class
+}
+```
+
+- Access to `private` members is provided via **getter** and **setter** methods:
+  
+  - `getter()` → retrieves the value.
+  
+  - `setter()` → modifies the value.
+
+---
+
+# Data Abstraction
+
+- Involves hiding the internal **implementation details** while exposing only essential **functionality**.
+
+```java
+interface Switch {
+    void turnOn();
+    void turnOff();
+}
+
+class Light implements Switch {
+    public void turnOn() {
+        System.out.println("on");
+    }
+    public void turnOff() {
+        System.out.println("off");
     }
 
-    public void func1()
-    {
-        (new StaticNonStatic()).func();
-        System.out.println("Function1");
-    }
-
-    public void func2()
-    {
-        StaticNonStatic obj = new StaticNonStatic();
-        obj.func1();
-        System.out.println("Function1");
-    }
-    public static void main(String [] args)
-    {
-        StaticNonStatic ob = new StaticNonStatic();
-        ob.func2();
+    public static void main(String[] args) {
+        Light light = new Light();
+        light.turnOn();
+        light.turnOff();
     }
 }
 ```
 
-- If we are declaring a method, then it is not mandatory to call it.
+- Achieved using **interfaces** and **abstract classes**.
+
+- Key advantages:
   
-  - If we are calling a method, them it must have been declared.
+  - Improved **security**
   
-  - Otherwise, it results in a compilation error.
+  - Simplified **usage**
+
+---
+
+# Encapsulation
+
+- The concept of **bundling data** and the methods that operate on it into a single unit.
+
+- All Java classes are examples of encapsulation.
+
+- It combines **Data Hiding** and **Abstraction**.
 
 ```java
-class CompilationError
-{
-    public static void func2()
-    {
-        System.out.println("Hii");
+// Encapsulated Class
+public class Student {
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public static void main(String [] args)
-    {
-        CompilationError ob = new CompilationError();
-        ob.func1(); // Error.
+
+    public String getName() {
+        return name;
+    }
+
+    public static void main(String[] args) {
+        Student student = new Student();
+        student.setName("Sambit");
+        System.out.println(student.getName());
     }
 }
 ```
 
-### Arguments
+---
 
-- **Input** to the method.
+# Polymorphism
 
-- Based on the arguments, methods are divided in to 2 types:
+- The ability to define methods with the **same name** but **different behavior**.
+
+## Types:
+
+- **Compile-time Polymorphism** → Method **Overloading**
   
-  - *No-argument* Method.
-  
-  - *Parameterized* Method OR *Argumented* Method.
+  - Includes **Method Hiding**
 
-- **No-argument Method**: Whenever a method is declared **without** any variables in the parameter list.
+- **Run-time Polymorphism** → Method **Overriding**
 
-- **Argumented Method**: Whenever a method is declared with **one or more** parameter variables.
-  
-  - `public static void main(int x) {}` &rarr; Primitive Argument.
-  
-  - `public static void main(String S) {}` → Non-Primitive Argument.
-  
-  ```java
-  class Arguments
-  {
-      public static void func(int x, char ch, String S, Arguments ob)
-      {
-          System.out.println(x + " " + ch + " " + S + " " + ob);
-      }
-  
-      public static void main(Sttring [] args)
-      {
-          Arguments.func(12, 'q', "Sambit", null); // 12 q Sambit null
-          Arguments.func('A', 'q', null, new Arguments()); // 65 q null Arguments@<address_of_object>
-          Arguments.func(12, 'q', new String(), null); // 12 q  null
-      }
-  }
-  ```
+Refer to `Polymorphism.md` for detailed coverage.
 
-### Method Signature
+---
 
-- The *combination* of **name** of the method and **type** of the argument.
+# Inheritance in Java
 
-- A `class` cannot contain more than **one** method, with **same** method signature.
-  
-  ```java
-  class MethodSignature
-  {
-      public static void func(int x) {}
-      //                 func(int)
-      public static void func(int x, int y) {}
-      //                 func(int, int)
-      public static void func1(int x, String S) {}
-      //                 func1(int, String)
-      public static void main(String [] args) {}
-      //                 main(String[])
-  }
-  ```
+Inheritance is the mechanism by which one class **acquires** the properties (i.e., variables and methods) of another class.
 
-### Return Type
+- **Properties** = Variables + Methods
 
-- *Defines* the type of data a method is going to return after being called.
+- The class whose properties are inherited is called the **Parent / Super / Base** class.
 
-- Based on the `return` type there are **three** types of methods:
-  
-  - `void`
-  
-  - `primitive`
-  
-  - `non-primitive`
+- The class that inherits the properties is called the **Child / Sub / Derived** class.
 
-- If a method has a *return* type other than `void`, then a return statement is **mandatory**.
+- The keyword `extends` is used by the **child** class to specify its **parent** class.
 
-- In `return` statement, a value is passed, and it's *type* must be either *same as* the `return` type or a value that can be *up-casted*.
-  
-  ```java
-  class ReturnType
-  {
-      public int func1() { return 12; }
-      public String func2() { return "12"; }
-      public static void main(String [] args)
-      {
-          ReturnType ob = new ReturnType();
-          int result = ob.func1();
-          System.out.println(result);
-          System.out.println(ob.func2());
-      }
-  }
-  ```
+- A **parent** class reference can hold an object of its **child** class, but the reverse is not allowed.
 
-- There are two ways to display the **return value**:
-  
-  - *Calling* the method **within** a printing statement.
-  
-  - *Storing* it in a variable, then **printing** the variable.
+```java
+ParentClass parent = new ChildClass(); // Valid
+ChildClass child = new ParentClass();  // Invalid
+```
 
-- No statement can be written *after* the `return` statement.
-  
-  - Gives `unreachable statement` error.
+---
 
-### VAR ARG
+# Factory Method
 
-- A type of *argument*, which can take **any** number of argument as an input, including no arguments.
+- A **static method** that returns an **instance of the class** when called via the class name.
 
-- **VAR ARG Method**:
-  
-  - A *method*, which takes a *var arg* as an argument.
-  
-  ```java
-  class VarArgMethod
-  {
-      public void varArgMethod(int...varArg)
-      {
-          System.out.println("Hello...");
-          for(int i : varArg)
-              System.out.println(i);
-          for(int i = 0; i < varArg.length; i++)
-              System.out.println(varArg[i]);
-      }
-      public static void main(String [] args)
-      {
-          VarArgMethod ob = new VarArgMethod();
-          ob.varArgMethod();
-          ob.varArgMethod(1);
-          ob.varArgMethod(1, 2);
-          ob.varArgMethod(1, 2, 3);
-      }
-  }
-  ```
-
-- Rules:
-  
-  - **Exact match** is preferred over *VAR ARG*.
-    
-    ```java
-    class Rule1
-    {
-        public void func(int...varArg)
-        {
-            System.out.println("Hello VAR ARG...");
-            for(int i : varArg)
-                System.out.println(i);
-        }
-    
-        public void func(int Arg)
-        {
-            System.out.println("Hello Single ARG...");
-            System.out.println(i);
-        }
-    
-        public static void main(String [] args)
-        {
-            (new Rule1()).func(1);
-        }
+```java
+class FactoryExample {
+    public static FactoryExample getInstance() {
+        return new FactoryExample();
     }
-    ```
-  
-  - **Up-cast match** is preferred over *VAR ARG*.
-    
-    - **Up-casting** is older technique than *VAR ARG*.
-    
-    ```java
-    class Rule2
-    {
-        public void func(int...varArg)
-        {
-            System.out.println("Hello VAR ARG...");
-            for(int i : varArg)
-                System.out.println(i);
+}
+
+// Usage:
+FactoryExample obj = FactoryExample.getInstance();
+```
+
+---
+
+# Singleton Class
+
+- A class that allows the creation of **only one instance**.
+
+- Common in utility classes like `Runtime`, `ActionServlet`, `ServiceLocator`, `BusinessDelegate`.
+
+- Enhances **memory utilization** and improves **performance**.
+
+```java
+class Singleton {
+    private static Singleton instance = null;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
         }
-    
-        public void func(long Arg)
-        {
-            System.out.println("Hello Single ARG...");
-            System.out.println(i);
-        }
-    
-        public static void main(String [] args)
-        {
-            (new Rule2()).func(1);
-        }
+        return instance;
     }
-    ```
-  
-  - **VAR ARG** is always the *last* parameter.
-    
-    - Compilation Error if violated.
-  
-  - There can be only **1** **VAR ARG** in a method parameter.
-    
-    - `public void func(int...a, int...b) {/* ... */}` → a **violates** the last parameter rule.
+}
+
+class TestSingleton {
+    public static void main(String[] args) {
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
+        System.out.println(s1 == s2); // true
+    }
+}
+```
+
+---
