@@ -1,7 +1,6 @@
 # PACKAGE : java.lang
 
-- ## CLASS : Object
-  
+- **CLASS : Object**
   - `.hasCode();`
   
   - `.toString();`
@@ -11,15 +10,14 @@
   - `.finalize();`
   
   - `clone`
-
-- ## CLASS : String
-
-- ## CLASS : StringBuffer
-
-- ## CLASS : StringBuilder
-
-- ## CLASSES : Wrapper
   
+- **CLASS : String**
+
+- **CLASS : StringBuffer**
+
+- **CLASS : StringBuilder**
+
+- **CLASSES : Wrapper**
   - `.valueOf();`
   
   - `.xxxValue();`

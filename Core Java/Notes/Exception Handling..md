@@ -1,38 +1,30 @@
 # Exception Handling
 
 - **Exception:** An unexpected, unwanted event that disturbs the normal flow of the program.
-
 - **Exception Handling:** The process of providing an alternative course of action to continue program execution after an exception.
-  
-  - The main objective of exception handling is to achieve **normal termination** of the program.
+  - The primary objective of exception handling is to ensure **normal termination** of the program.
 
----
+------
 
 ## Types of Exceptions
 
-- **Exception:** Typically caused by programming mistakes and are generally **recoverable**.
-
+- **Exception:** Typically caused by programming errors and are generally **recoverable**.
 - **Error:** Usually caused by system-level issues (e.g., memory exhaustion) and are typically **non-recoverable**.
 
 ### Classification
 
-![](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Throwable.png)
+![img](/home/darkop/Documents/JSpiders-Java-FullStack/Core%20Java/Notes/Images/Throwable.png)
 
 - **Checked Exceptions:**
-  
   - Checked at **compile-time**.
-  
-  - The compiler ensures they are either caught or declared in the method signature.
-
+  - Must be either caught or declared in the method signature.
 - **Unchecked Exceptions:**
-  
   - Not checked at compile-time.
-  
-  - Include `RuntimeException` and its subclasses, `Error` and its subclasses.
+  - Includes `RuntimeException` and its subclasses, as well as `Error` and its subclasses.
 
-> Note: Whether checked or unchecked, **all exceptions occur at run-time**.
+> **Note:** Regardless of type, **all exceptions occur at run-time**.
 
----
+------
 
 ## Run-time Stack Mechanism
 
@@ -46,24 +38,18 @@ class RSM {
         func();
     }
 }
-/* Stack
-|       |    |       |    |func2();|
-|       | -> |func();| -> |func(); |
-|main();|    |main();|    |main(); |
-*/
+// Stack Illustration:
+| func2(); |
+| func();  |
+| main();  |
 ```
 
-- For every thread, the JVM creates a separate **stack** at the time of thread creation.
+- Each thread is assigned a separate **stack** by the JVM at creation.
+- Method calls are stored as **activation records** (or **stack frames**) within the stack.
+- When a method completes, its stack frame is removed.
+- Upon completion of all method calls, the stack is destroyed and the thread terminates.
 
-- All method calls performed by that thread are stored in the stack.
-
-- Each entry in the stack is called an **activation record** (or **stack frame**).
-  
-  - After completing a method call, the JVM removes the corresponding entry from the stack.
-
-- Once all method calls are complete, the JVM destroys the empty stack and terminates the program normally.
-
----
+------
 
 ## Default Exception Handler
 
@@ -71,7 +57,7 @@ class RSM {
 class DEH {
     public static void func() { func2(); }
     public static void func2() {
-        System.out.println(10/0);
+        System.out.println(10 / 0);
     }
     public static void main(String[] args) {
         func();
@@ -79,40 +65,29 @@ class DEH {
 }
 ```
 
-- The method where an exception occurs is responsible for creating an **exception object** with:
-  
-  - Name of the exception.
-  
-  - Description of the exception.
-  
-  - Location where it occurred.
+- When an exception occurs, an **exception object** is created containing:
+  - Type
+  - Description
+  - Location
+- If the method lacks a handler, the JVM propagates the exception up the call stack.
+- If `main()` is also unhandled, the **default exception handler** prints:
 
-- After creating the exception object, the method hands it to the **JVM**.
+```text
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+    at DEH.func2(Main.java:4)
+    at DEH.func(Main.java:2)
+    at DEH.main(Main.java:6)
+```
 
-- The JVM checks if the method has exception handling code:
-  
-  - If not, it terminates the method **abnormally** and continues up the call stack.
-  
-  - This continues until the `main()` method.
-
-- If `main()` also lacks handling code, the JVM terminates the program and delegates the exception to the **default exception handler**.
-
-- The **default exception handler** prints the exception in the format:
-  
-  ```
-  Exception in thread "<thread-name>" <ExceptionType>: <Description>
-      at <Location>
-  ```
-
----
+------
 
 ## Customized Exception Handling
 
 ```java
 class CEH {
     public static void main(String[] args) {
-        System.out.println("Hii");
-        System.out.println(10/0);
+        System.out.println("Hi");
+        System.out.println(10 / 0);
         System.out.println("Bye");
     }    
 }
@@ -120,27 +95,21 @@ class CEH {
 
 ### `try-catch`
 
-- Code that may raise an exception is known as **risky code**.
-
-- Risky code should be placed in the `try` block.
-
-- Exception handling logic is written inside the `catch` block.
-
 ```java
 class TryCatchBlock {
     public static void main(String[] args) {
-        System.out.println("Hii");
+        System.out.println("Hi");
         try {
-            System.out.println(10/0);
+            System.out.println(10 / 0);
         } catch (ArithmeticException e) {
-            System.out.println(10/2);
+            System.out.println(10 / 2);
         }
         System.out.println("Bye");
-    }    
+    }
 }
 ```
 
-### Flow Control in `try-catch` Block
+### Flow Control in `try-catch`
 
 ```java
 class TCB {
@@ -159,22 +128,116 @@ class TCB {
 
 #### Scenarios
 
-- **Case 1**: No exception
-  
-  - Output: `St 1`, `St 2`, `St 3`, `St 5`
+- **Case 1**: No exception → `St 1`, `St 2`, `St 3`, `St 5`
+- **Case 2**: Exception at `St 2` → `St 1`, `St 4`, `St 5`
+- **Case 3**: Unhandled exception → `St 1`, program termination
 
-- **Case 2**: Exception at `St 2`
-  
-  - Output: `St 1`, `St 4`, `St 5`
+> If no exception occurs, `catch` is ignored.
+>  If an exception occurs, remaining `try` statements are skipped.
 
-- **Case 3**: Exception at `St 2`, not handled
-  
-  - Output: `St 1`, followed by program termination and exception trace
+------
 
-- **Case 4**: Exception at `St 4`
-  
-  - Output: `St 1`, `St 2`, `St 3`, `St 5`
+## Exception Methods (`Throwable` class)
 
-> - If no exception occurs, the `catch` block is ignored.
-> 
-> - If an exception occurs in the `try` block, the remaining code in that block is **skipped**, regardless of whether the exception is handled.
+- `.printStackTrace()` — Full trace with type, message, and location
+- `.getMessage()` — Only the message
+- `.toString()` — Type and message in one line
+
+```java
+class ExceptionExample {
+    public static void main(String[] args) {
+        try {
+            System.out.println(10 / 0);
+        } catch (ArithmeticException e) {
+            e.printStackTrace();
+            // System.out.println(e.getMessage());
+            // System.out.println(e.toString());
+        }
+    }
+}
+```
+
+------
+
+## Multiple `catch` Blocks
+
+- Multiple `catch` blocks allowed.
+- **Order** must be from **child** to **parent**.
+
+```java
+class MultipleCatch {
+    public static void main(String[] args) {
+        try {
+            System.out.println(10 / 0);
+        } catch (ArithmeticException e) {
+            System.out.println("AE");
+        } catch (Exception e) {
+            System.out.println("E");
+        }
+    }
+}
+```
+
+------
+
+## `finally` Block
+
+- Always executes after `try`, regardless of exception occurrence or handling.
+- Not executed if `System.exit()` is invoked.
+
+```java
+class Finally {
+    public static void main(String[] args) {
+        try {
+            System.out.println("try");
+            System.out.println(10 / 0);
+        } catch (ArithmeticException e) {
+            System.out.println("catch");
+        } finally {
+            System.out.println("finally");
+        }
+    }
+}
+```
+
+#### `finally` vs `return`
+
+```java
+class FinallyVsReturn {
+    public static int m1() {
+        try { return 111; }
+        catch (Exception e) { return 222; }
+        finally { return 333; }
+    }
+    public static void main(String[] args) {
+        System.out.println(m1());
+    }
+}
+```
+
+> **Output:** `333`
+
+------
+
+## `throw` Keyword
+
+- Used to explicitly throw an exception.
+- Only applicable to `Throwable` objects.
+- After `throw`, remaining statements become unreachable (unless inside a `try`).
+
+```java
+class THROW {
+    public static void main(String[] args) {
+        throw new ArithmeticException("Demo");
+        // System.out.println("Unreachable");
+    }
+}
+class THROW2 {
+    static ArithmeticException e;
+    public static void main(String[] args) {
+        throw e; // NullPointerException due to null reference
+    }
+}
+Exception in thread "main" java.lang.NullPointerException: Cannot throw exception because "THROW2.e" is null
+    at THROW2.main(Main.java:5)
+```

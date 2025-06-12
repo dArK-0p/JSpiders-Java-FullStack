@@ -130,4 +130,14 @@ Focus: Modifiers, access control, static blocks, complex logic
 
 > ✉ **Tip:** Start with 2 programs per day. Use meaningful variable names and document your logic with comments.
 
-Would you like a printable PDF or Notion version of this file as well?
+
+
+## Some Questions
+
+- [Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/).
+- [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/description/).
+- [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/).
+- [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/).
+- Find the Missing Number
+- Find the Single Number
+- Reverse Array with O(1) space.

@@ -19,13 +19,12 @@
    - `switch`
 
 2. **Iterative Statements**
-   
    - `for` loop
    
    - `while` loop
    
    - `do-while` loop
-
+   
 3. **Transfer Statements**
    
    - `break`
@@ -164,12 +163,12 @@ class FallThrough {
             case 5: System.out.println("5"); break;
             default: System.out.println("d");
         }
-        // Output:
-        // 2
-        // 3
-        // 4
     }
 }
+// Output:
+// 2
+// 3
+// 4
 ```
 
 ---
