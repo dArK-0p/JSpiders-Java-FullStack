@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Speed App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="profile" onclick="toggleProfilePopup()">
+    <img id="profileIcon" src="" alt="" title="Click to edit profile">
+    <div class="profile-popup" id="profilePopup">
+      <input type="text" id="profileName" placeholder="Name">
+      <input type="email" id="profileEmail" placeholder="Email">
+    </div>
+  </div>
+
+  <h1>Typing Speed Test</h1>
+  <div id="textDisplay" class="text-display"></div>
+
+  <div class="stats">
+    <div>Time: <span id="timer">0</span>s</div>
+    <div>WPM: <span id="wpm">0</span></div>
+    <div>Accuracy: <span id="accuracy">100</span>%</div>
+  </div>
+
+  <div class="result">
+    <h2>Results</h2>
+    <canvas id="resultChart" width="200" height="200"></canvas>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

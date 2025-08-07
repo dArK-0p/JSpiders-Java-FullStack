@@ -1,114 +1,61 @@
 # Data Types
 
-- Used to *specify* the **type** of data to be stored in a specific location.
+Used to **Specify** the *type* of a **Data** stored at a specific location.
 
-- There are 5 types of **Data Type**:
-  
-  - CHAR
-  
-  - VARCHAR
-  
-  - NUMBER
-  
-  - DATE
-  
-  - Large Objects:
-    
-    - Character Large Object.
-    
-    - Binary Large Object.
+- Data types are *classified* into **5** types:
+  - `CHAR`
+  - `VARCHAR` / `VARCHAR2`
+  - `NUMBER`
+  - `DATE`
+  - Large Object:
+    - Character Large Object (`CLOB`). &rarr; **4GB**
+    - Binary Large Object (`BLOB`). &rarr; **4GB**
 
-### CHAR
+## `CHAR`
 
-- Used to store:
-  
-  - Uppercase or Lowercase Alphabets,
-  
-  - Numbers,
-  
-  - Special Characters,
-  
-  into a specified column.
+- Stores *sequence of characters*.
+- **Syntax**: `CHAR(size)`.
+  - **Size**: No. of characters that can be stored in the cell.
+  - *MAX SIZE* = 2000.
+- Character Sequences are always enclosed within `''`.
+  - E. g. : `'Sambit'`.
+- Follows a **Fixed Length** memory allocation.
+  - `CHAR(10)` -> `|S|a|m|b|i|t| | | | |`
+    			                                      `Unused Memory` -> &uarr; &uarr; &uarr; &uarr;
+- Some Common Characters are: `A - Z`, `a - z`, `0 - 9`, `!`, `@`, etc.
 
-- Characters must always be enclosed in single quotes(`''`).
+## `VARCHAR` / `VARCHAR2`
 
-- To used the CHAR datatype, it is *necessary* to mention it's **Size**.
+- Stores *sequence of characters*.
+- **Syntax**: `VARCHAR(size)` OR `VARCHAR2(size)`
+  - **Size**: No. of characters that can be stored in the cell.
+  - *MAX SIZE*  = 2000 for `VARCHAR`
+  - *MAX SIZE*  = 4000 for `VARCHAR2`
+- Character Sequences are always enclosed within `''`.
+  - E. g. : `'Sambit'`.
+- Follows a **Variable Length** memory allocation.
+  - `VARCHAR(10)` -> `|S|a|m|b|i|t|`
+  - No *unused memory*.
+- Some Common Characters are: `A - Z`, `a - z`, `0 - 9`, `!`, `@`, etc.
 
-- **Syntax:** `CHAR( size )`
-  
-  - `CHAR(10)`
+## `NUMBER`
 
-##### Size
+- Used to *assign* **only numeric** value to a column.
+- **Syntax**: `NUMBER(precision, scale)`
+  - **Precision**: No. of Digits.
+  - **Scale**: No. of Digits within `precision`, after decimal(`.`).
 
-- *Defines* Storage Capacity.
-  
-  - Specifies the maximum no. of characters a column can store.
-  
-  - E.g.: `CHAR(10)` &rarr;  Column can store upto 10 characters.
+## `DATE`
 
-- *Fixed* Storage Allocation.
-  
-  - `CHAR(n)` always *reserves* exactly `n` bytes of memory.
-  
-  - Uses `' '` to compensate for *fewer* characters. 
+- Used to store Date in *Specific* format.
+- **Syntax**: `DATE(DD-MM-YY)` OR `DATE(DD-MM-YYYY)`
 
-- Maximum capacity: 2000 (varies by database system).
+## Large Object
 
-- *Efficient* for fixed-length data.
-  
-  - Best suited for fixed-length values.
-  
-  - *Inefficient* for variable-length data because of unnecessary `' '` usage.
-    
-    ```sql
-    CHAR(10) = 'SQL'
-    [ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 ]
-    ['S'|'Q'|'L'|' '|' '|' '|' '|' '|' '|' ' ]
-                |____________________________|
-                                |
-                 Unused Memory -> Space Padded
-    ```
+### Character Large Object (`CLOB`)
 
-### VARCHAR
+Used to store *large* amount of **characters** upto **4GB**.
 
-* Used to store:
-  
-  * Uppercase or Lowercase Alphabets,
-  
-  * Numbers,
-  
-  * Special Characters,
-  
-  into a specified column.
-- **Syntax:** `VARCHAR( size )`, `VARCHAR2( size )`
-  
-  * `VARCHAR(10)`, `VARCHAR2(10)`
+### Binary Large Object (`BLOB`)
 
-- Maximum capacity: `VARCHAR` &rarr;  2000, `VARCHAR2` &rarr; 4000
-
-- *Follows* variable memory allocation.
-
-### NUMBER
-
-- Used to assign only *numeric* values to a column.
-
-- **Syntax:** `NUMBER( precision, scale )`
-
-##### Precision
-
-- *Determines* the no. of digits to store an integer value.
-
-##### Scale
-
-- *Determines* the no. of digits to store after the decimal point(`.`) within the precision.
-
-### DATE
-
-- Used to store date in a *specific* format.
-
-- **Syntax:** `DATE`
-
-### Large Object
-
-- **Character** Large Object - Used to store large amount of *characters* upto **4GB**.
-- **Binary** Large Object - Used to store binary values of *images, audios, videos* upto **4GB**.
+Used to store *binary* values of **images, Videos, etc.** upto **4GB**.
